@@ -10,5 +10,5 @@ Front end part was edded. Using TailwindCSS for easy styling. Typescript is inst
 # SelectSceleton 
 Multy functional component that can change it self depens on input.
 
-#SelectPanel
+# SelectPanel
 Panel of three SelectSceleton each for another select 
