@@ -41,7 +41,7 @@ class F1InfoController {
         val url: String = "http://ergast.com/api/f1/$year/constructors.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
         val result: String = StringEdditor().cutRightPart(response, "\"Constructors\":")
-        return  result.dropLast(2).replaceFirstChar { "{Constructors:" }
+        return  result.dropLast(2).replaceFirstChar { "{\"Constructors\":" }
     }
 
 }
