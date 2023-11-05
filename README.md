@@ -5,7 +5,7 @@ Simple Web app taht allows you to track results of current and old F1 seasons.
 
 
 ## Last Progress
-Front end part was edded. Using TailwindCSS for easy styling. Typescript is instead of JavaScript. React Components using istead of React Hook.
+Added pass-routing so web-site now-multy page(2pages). Added front end bases details. Using TailwindCSS for easy styling. Typescript is instead of JavaScript. React Components using istead of React Hook.
 
 # SelectSceleton 
 Multy functional component that can change it self depens on input.
