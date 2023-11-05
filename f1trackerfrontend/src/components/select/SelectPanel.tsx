@@ -62,7 +62,7 @@ class SelectPanel extends Component<any,SelectPanelInterface> {
 
     render() {
         return (
-            <div className={"flex flex-raw justify-center items-top h-[50%] w-[70%] p-10 bg-orange-800"}>
+            <div className={"flex flex-raw justify-center items-top h-[50%] w-[70%] p-10 mt-10 bg-orange-800"}>
                 <SelectSceleton
                     onChange={this.handleSelectChange}
                     options={this.state.infoOptions}
