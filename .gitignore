@@ -36,3 +36,28 @@ out/
 
 ### VS Code ###
 .vscode/
+
+node_modules
+/node_modules
+/node_modules/
+# dependencies
+./f1trackerfrontend/node_modules
+./f1trackerfrontend/pnp
+./f1trackerfrontend/pnp.js
+
+# testing
+./f1trackerfrontend/coverage
+
+# production
+./f1trackerfrontend/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+./f1trackerfrontend/npm-debug.log*
+./f1trackerfrontend/yarn-debug.log*
+./f1trackerfrontend/yarn-error.log*

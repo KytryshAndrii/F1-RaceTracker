@@ -23,7 +23,7 @@ class F1ResultsController{
         val url = "http://ergast.com/api/f1/$year/$round/results.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
         val result: String = StringEdditor().cutRightPart(response, "\"time\":\"12:00:00Z\",")
-        return result.dropLast(2)
+        return result.dropLast(4)
     }
 
     @GetMapping("/driverresult")
@@ -32,7 +32,7 @@ class F1ResultsController{
         val url = "http://ergast.com/api/f1/$year/drivers/$driver/results.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
         val result: String = StringEdditor().cutRightPart(response, "\"Races\":")
-        return  result.dropLast(2).replaceFirstChar { "{Races:" }
+        return  result.dropLast(2).replaceFirstChar { "{\"Races\":" }
     }
     @GetMapping("/constructorresult")
     fun getF1ResultsByDriverAndConstructor(@RequestParam driver: String, constructor: String): String {
@@ -40,7 +40,7 @@ class F1ResultsController{
         val url = "http://ergast.com/api/f1/drivers/$driver/constructors/$constructor/results.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
         val result: String = StringEdditor().cutRightPart(response, "\"Races\":")
-        return  result.dropLast(2).replaceFirstChar { "{Races:" }
+        return  result.dropLast(2).replaceFirstChar { "{\"Races\":" }
     }
 
     @GetMapping("/fastestresult")
@@ -49,7 +49,7 @@ class F1ResultsController{
         val url = "http://ergast.com/api/f1/$year/1/fastest/1/results.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
         val result: String = StringEdditor().cutRightPart(response, "\"Races\":")
-        return  result.dropLast(2).replaceFirstChar { "{Races:" }
+        return  result.dropLast(2).replaceFirstChar { "{\"Races\":" }
     }
 
 }

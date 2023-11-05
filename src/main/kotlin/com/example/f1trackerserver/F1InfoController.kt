@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
+import java.time.LocalDateTime
+import java.util.*
 
 @RestController
 @RequestMapping("/f1/info")
@@ -41,7 +43,16 @@ class F1InfoController {
         val url: String = "http://ergast.com/api/f1/$year/constructors.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
         val result: String = StringEdditor().cutRightPart(response, "\"Constructors\":")
-        return  result.dropLast(2).replaceFirstChar { "{Constructors:" }
+        return  result.dropLast(2).replaceFirstChar { "{\"Constructors\":" }
+    }
+
+    @GetMapping("/yearlist")
+    fun getF1ConstruktorsByDate():Array<Int>?{
+        val calendar = Calendar.getInstance()
+        val current= calendar.get(Calendar.YEAR)
+        val arr: Array<Int> = Array<Int>((current + 1) - 2004){it + 2004}
+        println(arr.joinToString())
+        return  arr
     }
 
 }
