@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import F1InfoAPI from "../../API/InfoAPI";
 import SelectSceleton from "./SelectSceleton";
+import Loader from "../loader/Loader";
 
 interface SelectPanelInterface {
     infoOptions: any,
@@ -11,6 +12,8 @@ interface SelectPanelInterface {
 
     yearinfoOption: any,
     yearselectedOption: any,
+
+    ready: boolean
 }
 
 class SelectPanel extends Component<any,SelectPanelInterface> {
@@ -25,6 +28,8 @@ class SelectPanel extends Component<any,SelectPanelInterface> {
 
             yearinfoOption: [],
             yearselectedOption: null,
+
+            ready:false
         };
     }
 
@@ -34,13 +39,16 @@ class SelectPanel extends Component<any,SelectPanelInterface> {
         const yearinfoOption : any[] = await options.YearsList();
         this.setState({ yearinfoOption});
         this.setState({ infoOptions });
+        this.setState({ready: true})
     }
 
     async componentDidUpdate(nextProps: any, nextState: SelectPanelInterface) {
         const options: F1InfoAPI = new F1InfoAPI();
         if(this.state.selectedOption !== nextState.selectedOption) {
+            this.setState({ready: false})
             const constructorinfoOption: any[] = await options.Constructor(this.state.selectedOption.value)
             this.setState({constructorinfoOption})
+            this.setState({ready: true})
         }
     }
 
@@ -61,8 +69,8 @@ class SelectPanel extends Component<any,SelectPanelInterface> {
     }
 
     render() {
-        return (
-            <div className={"flex flex-raw justify-center items-top h-[50%] w-[70%] p-10 mt-10 bg-orange-800"}>
+        return this.state.ready?(
+            <div className={"flex flex-raw justify-center items-top h-[20%] w-[70%] p-10 mt-10 bg-f1-orange rounded-2xl shadow-lg shadow-f1-dark-orange"}>
                 <SelectSceleton
                     onChange={this.handleSelectChange}
                     options={this.state.infoOptions}
@@ -79,7 +87,7 @@ class SelectPanel extends Component<any,SelectPanelInterface> {
                     value={this.state.yearselectedOption}
                 />
             </div>
-        );
+        ): <Loader/>;
     }
 }
 

@@ -31,7 +31,7 @@ class RecentResults extends Component<any, RecentResultsInterface> {
         console.log(this.state.recentinfo)
         return this.state.ready ? (
             <div className={"w-full h-full flex flex-col items-center p-10"}>
-                <div className={"w-7/12 flex flex-col items-center justify-center bg-amber-50 rounded-xl shadow-xl text-lg leading-8 p-4 m-4"}>
+                <div className={"w-7/12 flex flex-col items-center justify-center bg-f1-orange rounded-xl shadow-lg shadow-f1-dark-orange text-2xl font-bold text-f1-white leading-8 p-4 m-4"}>
                     <h1>🏁 Recent Results 🏁</h1>
                     <h1>{this.state.recentinfo[this.state.recentinfo.length - 1].location}</h1>
                     <h2>{this.state.recentinfo[this.state.recentinfo.length - 1].date}</h2>
