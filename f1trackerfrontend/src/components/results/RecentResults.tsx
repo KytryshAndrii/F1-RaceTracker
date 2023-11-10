@@ -19,12 +19,9 @@ class RecentResults extends Component<any, RecentResultsInterface> {
         const resultApi: ResultsAPI = new ResultsAPI()
         const recentinfo: any[] = await resultApi.Recent();
         this.setState({ recentinfo });
-        setTimeout(()=>{
-            const {recentinfo} = this.state
-            var ready = true
-            this.setState({ready})
-            this.setState({recentinfo})
-        }, 1000)
+        this.setState({ready: true})
+        this.setState({recentinfo})
+
     }
 
     render() {

@@ -61,3 +61,4 @@ node_modules
 ./f1trackerfrontend/npm-debug.log*
 ./f1trackerfrontend/yarn-debug.log*
 ./f1trackerfrontend/yarn-error.log*
+/f1trackerfrontend/node_modules/
