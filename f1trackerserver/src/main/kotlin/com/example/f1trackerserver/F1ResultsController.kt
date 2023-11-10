@@ -18,16 +18,17 @@ class F1ResultsController{
     }
 
     @GetMapping("/paramresults")
-    fun getF1ResultsByYearAndRound(@RequestParam year: String, round: Int): String {
+    fun getF1ResultsByYearAndRound(@RequestParam year: Int, round: Int): String {
         val restTemplate = RestTemplate()
         val url = "http://ergast.com/api/f1/$year/$round/results.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
-        val result: String = StringEdditor().cutRightPart(response, "\"time\":\"12:00:00Z\",")
-        return result.dropLast(4)
+        val result: String = StringEdditor().cutRightPart(response, "\"Races\":")
+        println(result.dropLast(2).replaceFirstChar { "{\"Races\":" })
+        return result.dropLast(2).replaceFirstChar { "{\"Races\":" }
     }
 
     @GetMapping("/driverresult")
-    fun getF1ResultsByDriverAndYear(@RequestParam year: String, driver: String): String {
+    fun getF1ResultsByDriverAndYear(@RequestParam year: Int, driver: String): String {
         val restTemplate = RestTemplate()
         val url = "http://ergast.com/api/f1/$year/drivers/$driver/results.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
@@ -44,9 +45,9 @@ class F1ResultsController{
     }
 
     @GetMapping("/fastestresult")
-    fun getF1ResultFastest(@RequestParam year: String): String {
+    fun getF1ResultFastest(@RequestParam year: String, round:String): String {
         val restTemplate = RestTemplate()
-        val url = "http://ergast.com/api/f1/$year/1/fastest/1/results.json"
+        val url = "http://ergast.com/api/f1/$year/$round/fastest/1/results.json"
         val response: String = restTemplate.getForObject(url, String::class.java) ?: "No data received"
         val result: String = StringEdditor().cutRightPart(response, "\"Races\":")
         return  result.dropLast(2).replaceFirstChar { "{\"Races\":" }

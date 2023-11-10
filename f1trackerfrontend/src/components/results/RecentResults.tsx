@@ -19,12 +19,9 @@ class RecentResults extends Component<any, RecentResultsInterface> {
         const resultApi: ResultsAPI = new ResultsAPI()
         const recentinfo: any[] = await resultApi.Recent();
         this.setState({ recentinfo });
-        setTimeout(()=>{
-            const {recentinfo} = this.state
-            var ready = true
-            this.setState({ready})
-            this.setState({recentinfo})
-        }, 1000)
+        this.setState({ready: true})
+        this.setState({recentinfo})
+
     }
 
     render() {
@@ -44,7 +41,7 @@ class RecentResults extends Component<any, RecentResultsInterface> {
                         <div>
                             🏎
                             <p>Position: {elem.position}</p>
-                            <a href={elem.url} className={"underline decoration-dashed decoration-amber-950 decoration-2"}>Driver: {elem.driver}</a>
+                            <a href={elem.url} target="_blank" className={"underline decoration-dashed decoration-amber-950 decoration-2"}>Driver: {elem.driver}</a>
                             <p>Construktor: {elem.constructor}</p>
                         </div>
                         <div>

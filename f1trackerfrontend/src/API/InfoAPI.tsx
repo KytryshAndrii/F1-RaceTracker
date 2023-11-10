@@ -1,25 +1,26 @@
 export default class  F1InfoAPI{
 
      async Drivers(): Promise<any[]> {
-        const result = fetch("http://localhost:8080/f1/info/drivers").then(response => {
+         var listtoreturn: any[]= []
+         const result = fetch("http://localhost:8080/f1/info/drivers").then(response => {
                 if (!response.ok) {
                     throw new Error(response.statusText)
                 }
                 return response.json().then((value) => {
                     return value.MRData.DriverTable.Drivers;
                 })
-            })
-        var listtoreturn: any[]= []
-        result.then((resultvalue) =>{
-            setTimeout(()=>{resultvalue.map((elem: any)=> {
+            }).then((resultvalue) =>{
+            resultvalue.map((elem: any)=> {
                 listtoreturn.push({value:elem.driverId, label:elem.givenName + " " + elem.familyName})
-            });}, 500)
+            });
+            return listtoreturn
         })
-        return listtoreturn
+        return result
 
     }
 
     async Rounds(year: string): Promise<number>{
+        var toreturn: number = 0;
          const result = fetch("http://localhost:8080/f1/info/rounds?year=" + year).then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText)
@@ -27,69 +28,84 @@ export default class  F1InfoAPI{
             return response.json().then((value) => {
                 return value;
             })
-        })
-        var toreturn: number = 0;
-        result.then((resultvalue) =>{
-            setTimeout(()=>{
+        }).then((resultvalue) =>{
                 toreturn = resultvalue
-            }, 500)
+                return toreturn
         })
-        return toreturn
+        return result
     }
 
     async Constructor(driver: string): Promise<any[]> {
-        const result = fetch("http://localhost:8080/f1/info/constructors?driver="+ driver).then(response => {
+        var listtoreturn: any[]= []
+         const result = fetch("http://localhost:8080/f1/info/constructors?driver="+ driver).then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText)
             }
             return response.json().then((value) => {
                 return value.Constructors;
             })
-        })
-        var listtoreturn: any[]= []
-        result.then((resultvalue) =>{
-            setTimeout(()=>{resultvalue.map((elem: any)=> {
+        }).then((resultvalue) =>{
+            resultvalue.map((elem: any)=> {
                 listtoreturn.push({value:elem.constructorId, label:elem.name , nation: elem.nationality})
-            });}, 500)
+            });
+            return listtoreturn
         })
-        return listtoreturn
+        return result
 
     }
 
     async ConstructorByDate(year: number): Promise<any[]> {
-        const result = fetch("http://localhost:8080/f1/info/bydateconstructors?year="+ year).then(response => {
+        var listtoreturn: any[]= []
+         const result = fetch("/f1/info/bydateconstructors?year="+ year).then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText)
             }
             return response.json().then((value) => {
                 return value.Constructors;
             })
-        })
-        var listtoreturn: any[]= []
-        result.then((resultvalue) =>{
-            setTimeout(()=>{resultvalue.map((elem: any)=> {
+        }).then((resultvalue) =>{
+           resultvalue.map((elem: any)=> {
                 listtoreturn.push({value:elem.constructorId, label:elem.name , nation: elem.nationality})
-            });}, 500)
+           });
+           return listtoreturn
+
         })
-        return listtoreturn
+        return result
 
     }
 
     async YearsList(): Promise<any[]>{
         var listtoreturn: any[] = []
-        const result = fetch("http://localhost:8080/f1/info/yearlist").then(response => {
+        const result = fetch("/f1/info/yearlist").then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText)
             }
             return response.json()
+        }).then((resultvalue) =>{
+                resultvalue.map((elem: any)=> {
+                    listtoreturn.push({value: elem, label: elem.toString().toLocaleUpperCase()})
+                });
+                return listtoreturn
         })
-        result.then((resultvalue) =>{
-            setTimeout(()=>{resultvalue.map((elem: any)=> {
-                listtoreturn.push({value:elem, label:elem.toString().toLocaleUpperCase()})
-            });}, 500)
-        })
-        return listtoreturn
+        return result
 
+    }
+    async RoundsList(year: string): Promise<any[]>{
+        let rounds:number = await this.Rounds(year)
+        var listtoreturn: any[] = []
+        const result: Promise<any[]> = fetch("/f1/info/roundlist?rounds=" + rounds).then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+            return response.json()
+        }).then((resultvalue) =>{
+           resultvalue.map((elem: any)=> {
+                listtoreturn.push({value:elem, label:elem.toString().toLocaleUpperCase()})
+            });
+
+           return listtoreturn
+        })
+        return result
     }
 
 

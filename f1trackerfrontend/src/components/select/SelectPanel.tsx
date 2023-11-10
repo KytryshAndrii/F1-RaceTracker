@@ -5,30 +5,31 @@ import Loader from "../loader/Loader";
 
 interface SelectPanelInterface {
     infoOptions: any,
-    selectedOption: any,
-
     constructorinfoOption: any,
-    constructorselectedOption: any,
-
     yearinfoOption: any,
-    yearselectedOption: any,
-
+    roundinfoOption: any,
     ready: boolean
 }
 
-class SelectPanel extends Component<any,SelectPanelInterface> {
+interface SelectPanelProps {
+    handleSelectChange: (selectedOption: any)=> void,
+    handleConstruktorSelectChange: (selectedOption: any)=> void,
+    handleYearSelectChange: (selectedOption: any)=> void,
+    handleRoundSelectChange: (selectedOption: any)=> void,
+    yearselectedOption: any,
+    selectedOption: any,
+    constructorselectedOption: any,
+    roundselectedOption: any,
+}
+
+class SelectPanel extends Component<SelectPanelProps,SelectPanelInterface> {
     constructor(props: any) {
         super(props);
         this.state = {
             infoOptions: [],
-            selectedOption: null,
-
             constructorinfoOption: [],
-            constructorselectedOption: null,
-
             yearinfoOption: [],
-            yearselectedOption: null,
-
+            roundinfoOption: [],
             ready:false
         };
     }
@@ -44,47 +45,45 @@ class SelectPanel extends Component<any,SelectPanelInterface> {
 
     async componentDidUpdate(nextProps: any, nextState: SelectPanelInterface) {
         const options: F1InfoAPI = new F1InfoAPI();
-        if(this.state.selectedOption !== nextState.selectedOption) {
+        if(nextProps.selectedOption !== this.props.selectedOption) {
             this.setState({ready: false})
-            const constructorinfoOption: any[] = await options.Constructor(this.state.selectedOption.value)
+            const constructorinfoOption: any[] = await options.Constructor(this.props.selectedOption.value)
             this.setState({constructorinfoOption})
+            this.setState({ready: true})
+        }
+        if(nextProps.yearselectedOption !== this.props.yearselectedOption){
+            this.setState({ready: false})
+            console.log("next", nextProps.yearselectedOption)
+            console.log("props", this.props.yearselectedOption)
+            const roundinfoOption: any[] = await options.RoundsList(this.props.yearselectedOption.label)
+            this.setState({roundinfoOption})
             this.setState({ready: true})
         }
     }
 
-    handleConstruktorSelectChange = (constructorselectedOption: any) => {
-        console.log("Selected option:", constructorselectedOption);
-        this.setState({constructorselectedOption})
-    }
-
-    handleYearSelectChange = (yearselectedOption: any) => {
-        console.log("Selected option:", yearselectedOption);
-        this.setState({yearselectedOption})
-    }
-
-    handleSelectChange = (selectedOption: any) => {
-        // Handle the selected option here
-        console.log("Selected option:", selectedOption);
-        this.setState({selectedOption})
-    }
 
     render() {
         return this.state.ready?(
             <div className={"flex flex-raw justify-center items-top h-[20%] w-[70%] p-10 mt-10 bg-f1-orange rounded-2xl shadow-lg shadow-f1-dark-orange"}>
                 <SelectSceleton
-                    onChange={this.handleSelectChange}
+                    onChange={this.props.handleSelectChange}
                     options={this.state.infoOptions}
-                    value={this.state.selectedOption}
+                    value={this.props.selectedOption}
                 />
                 <SelectSceleton
-                    onChange={this.handleConstruktorSelectChange}
+                    onChange={this.props.handleConstruktorSelectChange}
                     options={this.state.constructorinfoOption}
-                    value={this.state.constructorselectedOption}
+                    value={this.props.constructorselectedOption}
                 />
                 <SelectSceleton
-                    onChange={this.handleYearSelectChange}
+                    onChange={this.props.handleYearSelectChange}
                     options={this.state.yearinfoOption}
-                    value={this.state.yearselectedOption}
+                    value={this.props.yearselectedOption}
+                />
+                <SelectSceleton
+                    onChange={this.props.handleRoundSelectChange}
+                    options={this.state.roundinfoOption}
+                    value={this.props.roundselectedOption}
                 />
             </div>
         ): <Loader/>;

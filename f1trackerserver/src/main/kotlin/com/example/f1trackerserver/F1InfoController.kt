@@ -47,11 +47,16 @@ class F1InfoController {
     }
 
     @GetMapping("/yearlist")
-    fun getF1ConstruktorsByDate():Array<Int>?{
+    fun getF1YearList():Array<Int>?{
         val calendar = Calendar.getInstance()
         val current= calendar.get(Calendar.YEAR)
         val arr: Array<Int> = Array<Int>((current + 1) - 2004){it + 2004}
-        println(arr.joinToString())
+        return  arr
+    }
+
+    @GetMapping("/roundlist")
+    fun getF1RoundList(@RequestParam rounds: Int):Array<Int>?{
+        val arr: Array<Int> = Array<Int>((rounds + 1) - 0){it + 1}
         return  arr
     }
 
