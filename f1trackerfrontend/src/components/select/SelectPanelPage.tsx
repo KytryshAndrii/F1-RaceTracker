@@ -4,6 +4,8 @@ import {Link} from "react-router-dom";
 import YearRoundResults from "../results/YearRoundResults";
 import F1InfoAPI from "../../API/InfoAPI";
 import YearDriverResults from "../results/YearDriverResults";
+import ConstructorDriverResults from "../results/ConstructorDriverResults";
+import FastestResult from "../results/FastestResult";
 export interface SelectPanelPageInterface{
     selectedOption: any,
     constructorselectedOption: any,
@@ -64,9 +66,9 @@ class SelectPanelPage extends Component<any, SelectPanelPageInterface> {
                         roundselectedOption={this.state.roundselectedOption}
 
                     />
-                {this.state.yearselectedOption && this.state.selectedOption?<YearDriverResults
+                {this.state.yearselectedOption && this.state.roundselectedOption?<FastestResult
                     year={this.state.yearselectedOption.value}
-                    driver={this.state.selectedOption.value}/>:<p>Loading</p>}
+                    round={this.state.roundselectedOption.value}/>:<p>Loading</p>}
 
 
             </div>

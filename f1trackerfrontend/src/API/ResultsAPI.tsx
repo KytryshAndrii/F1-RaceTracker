@@ -39,18 +39,9 @@ export default class  ResultsAPI{
             time = resultvalue.time.slice(0, -1)
             resultvalue.Results.map((elem: any)=> {
                 if(elem.FastestLap){
-                    listtoreturn.push(
-                        {number: elem.number, position: elem.position, points: elem.points,
-                         driver: elem.Driver.givenName + " " + elem.Driver.familyName, constructor: elem.Constructor.name,
-                         status: elem.status, url: elem.Driver.url,
-                         fastesttime: elem.FastestLap.Time.time, averspeed: elem.FastestLap.AverageSpeed.speed
-                        })
+                    this.DataArrayFiller(elem, listtoreturn)
                 }else{
-                    listtoreturn.push(
-                        {number: elem.number, position: elem.position, points: elem.points,
-                         driver: elem.Driver.givenName + " " + elem.Driver.familyName, constructor: elem.Constructor.name,
-                         status: elem.status, url: elem.Driver.url
-                        })
+                    this.ExceptionDataArrayFiller(elem, listtoreturn)
                 }
             })
             listtoreturn.push({season: season, location: location, date: date, time: time})
@@ -78,18 +69,9 @@ export default class  ResultsAPI{
                 time = resultvalue.time.slice(0, -1)
                 resultvalue.Results.map((elem: any)=> {
                     if(elem.FastestLap){
-                        listtoreturn.push(
-                            {number: elem.number, position: elem.position, points: elem.points,
-                                driver: elem.Driver.givenName + " " + elem.Driver.familyName, constructor: elem.Constructor.name,
-                                status: elem.status, url: elem.Driver.url,
-                                fastesttime: elem.FastestLap.Time.time, averspeed: elem.FastestLap.AverageSpeed.speed
-                            })
+                        this.DataArrayFiller(elem, listtoreturn)
                     }else{
-                        listtoreturn.push(
-                            {number: elem.number, position: elem.position, points: elem.points,
-                                driver: elem.Driver.givenName + " " + elem.Driver.familyName, constructor: elem.Constructor.name,
-                                status: elem.status, url: elem.Driver.url
-                            })
+                        this.ExceptionDataArrayFiller(elem, listtoreturn)
                     }
                 })
                 listtoreturn.push({season: season, location: location, date: date, time: time})
@@ -118,6 +100,82 @@ export default class  ResultsAPI{
                     date = elem.date
                     time = elem.time.slice(0, -1)
                     console.log("elem.Results[0]", elem.Results[0])
+                    if(elem.Results[0].FastestLap){
+                        this.DataArrayFiller(elem.Results[0], listtoreturn)
+                        listtoreturn[key].season= season
+                        listtoreturn[key].location= location
+                        listtoreturn[key].date= date
+                        listtoreturn[key].time= time
+                    }else{
+                        this.ExceptionDataArrayFiller(elem.Results[0], listtoreturn)
+                        listtoreturn[key].season= season
+                        listtoreturn[key].location= location
+                        listtoreturn[key].date= date
+                        listtoreturn[key].time= time
+                    }
+                })
+                return listtoreturn
+            })
+        })
+        return result
+    }
+
+    async ResultsByConstructorAndDriver(constructor: string, driver:string){
+        var listtoreturn: any[]= []
+        var season: string = ""
+        var location: string = ""
+        var date: string = ""
+        var time: string = ""
+        const result = fetch("/f1/results/constructorresult?driver=" + driver + "&constructor=" + constructor).then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+            return response.json().then((value) => {
+                return value.Races;
+            }).then((resultvalue) =>{
+                resultvalue.map((elem: any, key: number)=> {
+                    season = elem.season
+                    location = elem.Circuit.Location.locality + " - " + elem.Circuit.Location.country
+                    date = elem.date
+                    time = elem.time.slice(0, -1)
+                    if(elem.Results[0].FastestLap){
+                        this.DataArrayFiller(elem.Results[0], listtoreturn)
+                        listtoreturn[key].season= season
+                        listtoreturn[key].location= location
+                        listtoreturn[key].date= date
+                        listtoreturn[key].time= time
+                    }else{
+                        this.ExceptionDataArrayFiller(elem.Results[0], listtoreturn)
+                        listtoreturn[key].season= season
+                        listtoreturn[key].location= location
+                        listtoreturn[key].date= date
+                        listtoreturn[key].time= time
+                    }
+                })
+                return listtoreturn
+            })
+        })
+        return result
+    }
+
+    async FastestResultsByYearandRound(year: string, round:string){
+        var listtoreturn: any[]= []
+        var season: string = ""
+        var location: string = ""
+        var date: string = ""
+        var time: string = ""
+        const result = fetch("/f1/results/fastestresult?year=" + year + "&round=" + round).then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+            return response.json().then((value) => {
+                return value.Races;
+            }).then((resultvalue) =>{
+                resultvalue.map((elem: any, key: number)=> {
+                    season = elem.season
+                    location = elem.Circuit.Location.locality + " - " + elem.Circuit.Location.country
+                    date = elem.date
+                    time = elem.time.slice(0, -1)
                     if(elem.Results[0].FastestLap){
                         this.DataArrayFiller(elem.Results[0], listtoreturn)
                         listtoreturn[key].season= season

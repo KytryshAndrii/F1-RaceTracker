@@ -49,7 +49,7 @@ class YearRoundResults extends Component<YearRoundResultsProps,  YearRoundResult
                             <div>
                                 🏎
                                 <p>Position: {elem.position}</p>
-                                <a href={elem.url} className={"underline decoration-dashed decoration-amber-950 decoration-2"}>Driver: {elem.driver}</a>
+                                <a href={elem.url} target="_blank" className={"underline decoration-dashed decoration-amber-950 decoration-2"}>Driver: {elem.driver}</a>
                                 <p>Construktor: {elem.constructor}</p>
                             </div>
                             <div>
