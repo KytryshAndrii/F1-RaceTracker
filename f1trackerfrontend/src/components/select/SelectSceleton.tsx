@@ -5,6 +5,7 @@ interface SelectSceletonProps {
     onChange: (selectedOption: any) => void;
     options: any[];
     value: any;
+    label:string;
 }
 
 interface SelectSceletonState {
@@ -29,12 +30,15 @@ class SelectSceleton extends Component<SelectSceletonProps, SelectSceletonState>
 
     render() {
         return (
-            <div className={"p-4 m-4 w-64"}>
-                <Select
-                    value={this.props.value}
-                    onChange={this.handleChange}
-                    options={this.props.options}
-                />
+            <div className={"w-36 h-auto flex flex-col items-center text-f1-white font-bold text-xl p-4 m-4 w-64"}>
+                {this.props.label}
+                <div className={"text-stone-900 font-normal text-lg"}>
+                    <Select
+                        value={this.props.value}
+                        onChange={this.handleChange}
+                        options={this.props.options}
+                    />
+                </div>
             </div>
         );
     }

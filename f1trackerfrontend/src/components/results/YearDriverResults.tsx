@@ -5,7 +5,8 @@ interface YearDriverResultsInterface {
     info: any[],
     ready: any,
     year: number,
-    driver: string
+    driver: string,
+    resultApi: ResultsAPI
 }
 
 type YearDriverResultsProps = {
@@ -20,22 +21,29 @@ class YearDriverResults extends Component<YearDriverResultsProps,  YearDriverRes
             info: [],
             ready: false,
             year: 0,
-            driver:""
+            driver:"",
+            resultApi: new ResultsAPI()
         };
     }
 
     async componentDidMount() {
-        const resultApi: ResultsAPI = new ResultsAPI()
-        const info: any[] = await resultApi.ResultsByYearAndDriver(this.props.year, this.props.driver)
-        info.reverse()
+        const info: any[] = await this.state.resultApi.ResultsByYearAndDriver(this.props.year, this.props.driver)
         this.setState({ info });
-        this.setState({ready: true})
-
+    }
+    async componentDidUpdate(){
+        const resultApi: ResultsAPI = new ResultsAPI()
+        if(this.props.year != this.state.year || this.props.driver != this.state.driver){
+            const info: any[] = await resultApi.ResultsByYearAndDriver(this.props.year, this.props.driver)
+            this.setState({ info });
+            this.setState({ready: true})
+            this.setState({year: this.props.year})
+            this.setState({driver: this.props.driver})
+        }
     }
 
     render() {
         return this.state.ready ? (
-            <div className={"w-full h-full flex flex-col items-center p-10"}>
+            <div className={"w-full h-fit flex flex-col items-center p-10 bg-f1-main"}>
                 <div className={"w-7/12 flex flex-col items-center justify-center bg-f1-orange rounded-xl shadow-lg shadow-f1-dark-orange text-2xl font-bold text-f1-white leading-8 p-4 m-4"}>
                     <h1>🏁 Results By Driver and Year 🏁</h1>
                 </div>

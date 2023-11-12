@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ResultsAPI from "../../API/ResultsAPI";
 import Loader from "../loader/Loader";
+import NavBar from "../navigate/NavBar";
 interface RecentResultsInterface {
     recentinfo: any[],
     ready: any,
@@ -25,9 +26,8 @@ class RecentResults extends Component<any, RecentResultsInterface> {
     }
 
     render() {
-        console.log(this.state.recentinfo)
         return this.state.ready ? (
-            <div className={"w-full h-full flex flex-col items-center p-10"}>
+            <div className={"w-full h-full flex flex-col items-center bg-f1-main"}>
                 <div className={"w-7/12 flex flex-col items-center justify-center bg-f1-orange rounded-xl shadow-lg shadow-f1-dark-orange text-2xl font-bold text-f1-white leading-8 p-4 m-4"}>
                     <h1>🏁 Recent Results 🏁</h1>
                     <h1>{this.state.recentinfo[this.state.recentinfo.length - 1].location}</h1>

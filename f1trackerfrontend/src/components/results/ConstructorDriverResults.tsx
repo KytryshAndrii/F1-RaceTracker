@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import ResultsAPI from "../../API/ResultsAPI";
 import Loader from "../loader/Loader";
+import F1InfoAPI from "../../API/InfoAPI";
 interface ConstructorDriverResultsInterface {
     info: any[],
     ready: any,
     constructor: string,
     driver: string
+    resultApi: ResultsAPI,
 }
 
 type ConstructorDriverResultsProps = {
@@ -20,22 +22,29 @@ class ConstructorDriverResults extends Component<ConstructorDriverResultsProps, 
             info: [],
             ready: false,
             constructor: "",
-            driver:""
+            driver:"",
+            resultApi: new ResultsAPI()
         };
     }
 
     async componentDidMount() {
-        const resultApi: ResultsAPI = new ResultsAPI()
-        const info: any[] = await resultApi.ResultsByConstructorAndDriver(this.props.constructor, this.props.driver)
-        info.reverse()
+        const info: any[] = await this.state.resultApi.ResultsByConstructorAndDriver(this.props.constructor, this.props.driver)
         this.setState({ info });
-        this.setState({ready: true})
-
     }
 
+    async componentDidUpdate(){
+        if(this.props.driver != this.state.driver || this.props.constructor != this.state.constructor){
+            const info: any[] = await this.state.resultApi.ResultsByConstructorAndDriver(this.props.constructor, this.props.driver)
+            info.reverse()
+            this.setState({ info });
+            this.setState({ready: true})
+            this.setState({driver: this.props.driver})
+            this.setState({constructor: this.props.constructor})
+        }
+    }
     render() {
         return this.state.ready ? (
-            <div className={"w-full h-full flex flex-col items-center p-10"}>
+            <div className={"w-full h-fit flex flex-col items-center p-10 bg-f1-main"}>
                 <div className={"w-7/12 flex flex-col items-center justify-center bg-f1-orange rounded-xl shadow-lg shadow-f1-dark-orange text-2xl font-bold text-f1-white leading-8 p-4 m-4"}>
                     <h1>🏁 Results By Driver and Constructor 🏁</h1>
                 </div>

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import SelectPanel from "./SelectPanel";
-import {Link} from "react-router-dom";
-import YearRoundResults from "../results/YearRoundResults";
-import F1InfoAPI from "../../API/InfoAPI";
+import ButtonsPanel from "../buttons/ButtonsPanel";
 import YearDriverResults from "../results/YearDriverResults";
+import YearRoundResults from "../results/YearRoundResults";
 import ConstructorDriverResults from "../results/ConstructorDriverResults";
 import FastestResult from "../results/FastestResult";
 export interface SelectPanelPageInterface{
@@ -11,8 +10,10 @@ export interface SelectPanelPageInterface{
     constructorselectedOption: any,
     yearselectedOption: any,
     roundselectedOption: any,
+    buttonstate: string,
     ready: boolean
 }
+
 
 class SelectPanelPage extends Component<any, SelectPanelPageInterface> {
     constructor(props: any) {
@@ -22,15 +23,18 @@ class SelectPanelPage extends Component<any, SelectPanelPageInterface> {
             constructorselectedOption: null,
             yearselectedOption: null,
             roundselectedOption: null,
+            buttonstate: "constructor",
             ready:false
         };
     }
+
 
     handleSelectChange = (selectedOption: any) => {
         this.setState({selectedOption})
 
     }
     handleConstruktorSelectChange = (selectedOption: any) => {
+        console.log(selectedOption)
         this.setState({constructorselectedOption: selectedOption})
 
     }
@@ -43,18 +47,28 @@ class SelectPanelPage extends Component<any, SelectPanelPageInterface> {
 
     }
 
+    handleConstructorButtonClick = () => {
+        this.setState({buttonstate: "constructor"})
+    }
+    handleYearButtonClick = () => {
+        this.setState({buttonstate: "year"})
+    }
+    handleYearRoundButtonClick = () => {
+        this.setState({buttonstate: "round"})
+    }
+    handleFastestButtonClick = () => {
+        this.setState({buttonstate: "fastest"})
+    }
+
     render() {
         return (
-            <div className={"w-full h-full flex flex-col items-center bg-f1-main"}>
-                <div className={"text-6xl text-f1-white m-4 p-8 font-bold"}>F1 Tracker</div>
-                <ul className={"flex flex-row justify-around items-center w-96 bg-amber-50 rounded-xl shadow-xl text-xl leading-8 p-6 m-4"}>
-                    <li className={"text-2xl hover:text-f1-orange hover:scale-105 delay-50 ease-in-out"}>
-                        <Link to="/">Home</Link>
-                    </li>
-                    <li className={" text-2xl hover:text-f1-orange hover:scale-105 delay-50 ease-in-out"}>
-                        <Link to="/custominfo">Custom Info</Link>
-                    </li>
-                </ul>
+            <div className={"w-full h-screen flex flex-col items-center bg-f1-main"}>
+                    <ButtonsPanel
+                        handleConstructorButtonClick={this.handleConstructorButtonClick}
+                        handleYearButtonClick = {this.handleYearButtonClick}
+                        handleYearRoundButtonClick = {this.handleYearRoundButtonClick}
+                        handleFastestButtonClick = {this.handleFastestButtonClick}
+                    />
                     <SelectPanel
                         handleSelectChange={this.handleSelectChange}
                         handleConstruktorSelectChange={this.handleConstruktorSelectChange}
@@ -64,13 +78,24 @@ class SelectPanelPage extends Component<any, SelectPanelPageInterface> {
                         yearselectedOption={this.state.yearselectedOption}
                         constructorselectedOption={this.state.constructorselectedOption}
                         roundselectedOption={this.state.roundselectedOption}
+                        buttonstate={this.state.buttonstate}
 
                     />
-                {this.state.yearselectedOption && this.state.roundselectedOption?<FastestResult
+                {this.state.yearselectedOption && this.state.roundselectedOption && this.state.buttonstate ==="round"?<YearRoundResults
                     year={this.state.yearselectedOption.value}
-                    round={this.state.roundselectedOption.value}/>:<p>Loading</p>}
+                    round={this.state.roundselectedOption.value}/>:<></>}
 
+                {this.state.yearselectedOption && this.state.selectedOption && this.state.buttonstate ==="year"?<YearDriverResults
+                    year={this.state.yearselectedOption.value}
+                    driver={this.state.selectedOption.value}/>:<></>}
 
+                {this.state.constructorselectedOption && this.state.selectedOption && this.state.buttonstate ==="constructor"?<ConstructorDriverResults
+                    constructor={this.state.constructorselectedOption.value}
+                    driver={this.state.selectedOption.value}/>:<></>}
+
+                {this.state.yearselectedOption && this.state.roundselectedOption && this.state.buttonstate ==="fastest"?<FastestResult
+                    year={this.state.yearselectedOption.value}
+                    round={this.state.roundselectedOption.value}/>:<></>}
             </div>
         );
     }
