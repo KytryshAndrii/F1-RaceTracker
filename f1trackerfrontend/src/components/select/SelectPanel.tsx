@@ -8,7 +8,7 @@ interface SelectPanelInterface {
     constructorinfoOption: any,
     yearinfoOption: any,
     roundinfoOption: any,
-    ready: boolean
+    ready: boolean,
 }
 
 interface SelectPanelProps {
@@ -20,6 +20,7 @@ interface SelectPanelProps {
     selectedOption: any,
     constructorselectedOption: any,
     roundselectedOption: any,
+    buttonstate: string,
 }
 
 class SelectPanel extends Component<SelectPanelProps,SelectPanelInterface> {
@@ -30,7 +31,7 @@ class SelectPanel extends Component<SelectPanelProps,SelectPanelInterface> {
             constructorinfoOption: [],
             yearinfoOption: [],
             roundinfoOption: [],
-            ready:false
+            ready:false,
         };
     }
 
@@ -53,8 +54,6 @@ class SelectPanel extends Component<SelectPanelProps,SelectPanelInterface> {
         }
         if(nextProps.yearselectedOption !== this.props.yearselectedOption){
             this.setState({ready: false})
-            console.log("next", nextProps.yearselectedOption)
-            console.log("props", this.props.yearselectedOption)
             const roundinfoOption: any[] = await options.RoundsList(this.props.yearselectedOption.label)
             this.setState({roundinfoOption})
             this.setState({ready: true})
@@ -64,27 +63,83 @@ class SelectPanel extends Component<SelectPanelProps,SelectPanelInterface> {
 
     render() {
         return this.state.ready?(
-            <div className={"flex flex-raw justify-center items-top h-[20%] w-[70%] p-10 mt-10 bg-f1-orange rounded-2xl shadow-lg shadow-f1-dark-orange"}>
-                <SelectSceleton
-                    onChange={this.props.handleSelectChange}
-                    options={this.state.infoOptions}
-                    value={this.props.selectedOption}
-                />
-                <SelectSceleton
-                    onChange={this.props.handleConstruktorSelectChange}
-                    options={this.state.constructorinfoOption}
-                    value={this.props.constructorselectedOption}
-                />
-                <SelectSceleton
-                    onChange={this.props.handleYearSelectChange}
-                    options={this.state.yearinfoOption}
-                    value={this.props.yearselectedOption}
-                />
-                <SelectSceleton
-                    onChange={this.props.handleRoundSelectChange}
-                    options={this.state.roundinfoOption}
-                    value={this.props.roundselectedOption}
-                />
+            <div className={"flex flex-raw justify-center items-top h-52 w-2/5 p-10 mt-10 bg-f1-orange rounded-2xl shadow-lg shadow-f1-dark-orange"}>
+                {this.props.buttonstate === "year"?
+                    <div className={"flex flex-col items-center justify-between"}>
+                        <div className={"text-3xl text-f1-white font-bold"}>Year Driver</div>
+                        <div className={"flex flex-row"}>
+                            <SelectSceleton
+                        onChange={this.props.handleSelectChange}
+                        options={this.state.infoOptions}
+                        value={this.props.selectedOption}
+                        label={"Driver"}
+                        />
+                        <SelectSceleton
+                        onChange={this.props.handleYearSelectChange}
+                        options={this.state.yearinfoOption}
+                        value={this.props.yearselectedOption}
+                        label={"Year"}
+                        />
+                        </div>
+                    </div>
+                    :<></>}
+                {this.props.buttonstate === "constructor"?
+                    <div className={"flex flex-col items-center justify-between"}>
+                        <div className={"text-3xl text-f1-white font-bold"}>Constructor Driver</div>
+                        <div className={"flex flex-row"}>
+                        <SelectSceleton
+                            onChange={this.props.handleSelectChange}
+                            options={this.state.infoOptions}
+                            value={this.props.selectedOption}
+                            label={"Driver"}
+                        />
+                        <SelectSceleton
+                            onChange={this.props.handleConstruktorSelectChange}
+                            options={this.state.constructorinfoOption}
+                            value={this.props.constructorselectedOption}
+                            label={"Constructor"}
+                        />
+                        </div>
+                    </div>
+                    :<></>}
+                {this.props.buttonstate === "round"?
+                    <div className={"flex flex-col items-center justify-between"}>
+                        <div className={"text-3xl text-f1-white font-bold"}>Year Round</div>
+                        <div className={"flex flex-row"}>
+                        <SelectSceleton
+                            onChange={this.props.handleYearSelectChange}
+                            options={this.state.yearinfoOption}
+                            value={this.props.yearselectedOption}
+                            label={"Year"}
+                        />
+                        <SelectSceleton
+                            onChange={this.props.handleRoundSelectChange}
+                            options={this.state.roundinfoOption}
+                            value={this.props.roundselectedOption}
+                            label={"Round"}
+                        /> </div>
+
+                    </div>
+                    :<></>}
+                {this.props.buttonstate === "fastest"?
+                    <div className={"flex flex-col items-center justify-between"}>
+                        <div className={"text-3xl text-f1-white font-bold"}>Fastest Time</div>
+                        <div className={"flex flex-row"}>
+                        <SelectSceleton
+                            onChange={this.props.handleYearSelectChange}
+                            options={this.state.yearinfoOption}
+                            value={this.props.yearselectedOption}
+                            label={"Year"}
+                        />
+                        <SelectSceleton
+                            onChange={this.props.handleRoundSelectChange}
+                            options={this.state.roundinfoOption}
+                            value={this.props.roundselectedOption}
+                            label={"Round"}
+                        />
+                        </div>
+                    </div>
+                    :<></>}
             </div>
         ): <Loader/>;
     }

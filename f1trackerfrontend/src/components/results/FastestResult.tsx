@@ -5,7 +5,8 @@ interface FastestResultsInterface {
     info: any[],
     ready: any,
     year: string,
-    round: string
+    round: string,
+    resultApi: ResultsAPI,
 }
 
 type FastestResultsProps = {
@@ -20,22 +21,30 @@ class FastestResults extends Component<FastestResultsProps,  FastestResultsInter
             info: [],
             ready: false,
             year: "",
-            round:""
+            round:"",
+            resultApi: new ResultsAPI()
         };
     }
 
     async componentDidMount() {
-        const resultApi: ResultsAPI = new ResultsAPI()
-        const info: any[] = await resultApi.FastestResultsByYearandRound(this.props.year, this.props.round)
-        info.reverse()
+        const info: any[] = await this.state.resultApi.FastestResultsByYearandRound(this.props.year, this.props.round)
         this.setState({ info });
-        this.setState({ready: true})
+    }
 
+    async componentDidUpdate(){
+        const resultApi: ResultsAPI = new ResultsAPI()
+        if(this.props.year != this.state.year || this.props.round != this.state.round){
+            const info: any[] = await resultApi.FastestResultsByYearandRound(this.props.year, this.props.round)
+            this.setState({ info });
+            this.setState({ready: true})
+            this.setState({year: this.props.year})
+            this.setState({round: this.props.round})
+        }
     }
 
     render() {
         return this.state.ready ? (
-            <div className={"w-full h-full flex flex-col items-center p-10"}>
+            <div className={"w-full h-fit flex flex-col items-center p-10 bg-f1-main"}>
                 <div className={"w-7/12 flex flex-col items-center justify-center bg-f1-orange rounded-xl shadow-lg shadow-f1-dark-orange text-2xl font-bold text-f1-white leading-8 p-4 m-4"}>
                     <h1>🏁 Fastest Result 🏁</h1>
                 </div>

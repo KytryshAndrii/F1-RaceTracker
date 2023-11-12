@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="01254c04-5641-435c-a9cc-d626652b0255" name="Changes" comment="Corrected response string">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/0.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/1.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/1.pack" afterDir="false" />
@@ -14,9 +13,13 @@
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/11.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/11.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/12.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/12.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/13.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/13.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/14.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/14.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/15.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/15.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/16.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/16.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/2.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/2.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/3.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/3.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/4.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/4.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/5.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/5.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/6.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/6.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/7.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/7.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/8.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/8.pack" afterDir="false" />
@@ -24,23 +27,35 @@
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/index.pack" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/tsconfig.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.cache/tsconfig.tsbuildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/API/ResultsAPI.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/API/ResultsAPI.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/node_modules/.package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/ConstructorDriverResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/ConstructorDriverResults.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/FastestResult.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/FastestResult.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/RecentResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/RecentResults.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/YearDriverResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/YearDriverResults.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/YearRoundResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/results/YearRoundResults.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/select/SelectPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/select/SelectPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/select/SelectPanelPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/select/SelectPanelPage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/f1trackerserver/F1CheckConnection.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/f1trackerserver/F1InfoController.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/f1trackerserver/F1ResultsController.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/f1trackerserver/F1TrackerServerApplication.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/example/f1trackerserver/StringEdditor.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/kotlin/com/example/f1trackerserver/F1TrackerServerApplicationTests.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/components/select/SelectSceleton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/components/select/SelectSceleton.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerfrontend/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/f1trackerfrontend/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/src/main/kotlin/com/example/f1trackerserver/F1CheckConnection.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/src/main/kotlin/com/example/f1trackerserver/F1InfoController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/src/main/kotlin/com/example/f1trackerserver/F1ResultsController.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/src/main/kotlin/com/example/f1trackerserver/F1TrackerServerApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/src/main/kotlin/com/example/f1trackerserver/StringEdditor.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/f1trackerserver/src/test/kotlin/com/example/f1trackerserver/F1TrackerServerApplicationTests.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +83,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Class" />
+        <option value="CSS File" />
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
       </list>
@@ -119,9 +135,9 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "android.gradle.sync.needed": "true",
     "git-widget-placeholder": "CustomInfo",
     "last_opened_file_path": "C:/Users/User/IdeaProjects/F1TrackerServer",
+    "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -204,6 +220,7 @@
       <workItem from="1699533019068" duration="612000" />
       <workItem from="1699538219516" duration="4119000" />
       <workItem from="1699558613104" duration="22381000" />
+      <workItem from="1699712247575" duration="20649000" />
     </task>
     <task id="LOCAL-00001" summary="Initioal start">
       <option name="closed" value="true" />
